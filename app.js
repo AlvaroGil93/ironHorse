@@ -26,9 +26,6 @@ app.use('/usuarios',userRouter);//importe mis rutas
 app.use('/login', loginRouter);
 
 
-// 3. Ejecutar el servidor
-app.listen(port, () => {
-  console.log("We are connected to IronHorse on port", port);
-});
+
 
 export default app;

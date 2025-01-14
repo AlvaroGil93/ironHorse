@@ -10,6 +10,6 @@ import authMiddleware from "../middleware/auth.js";
 export const userRouter = express.Router();
 
 userRouter.post('/crear', createUser);
-userRouter.get('/obtener', authMiddleware("superadmin"), showUsers);
+userRouter.get('/obtener', showUsers);
 // userRouter.get('/obtener', authMiddleware, showUsers);
 
