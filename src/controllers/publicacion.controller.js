@@ -8,11 +8,17 @@ import publicacionModel from '../models/publicacion.model.js';
 export const getPublicacion = async (req, res) => {
   try {
     const publicaciones = await publicacionModel.find(); // Usando modelo para obtener publicaciones
-    res.status(200).json(publicaciones);
+    
+    if (publicaciones.length === 0) {
+      return res.status(200).json({ message: 'No hay publicaciones almacenadas' });
+    }
+
+    res.status(200).json(publicaciones); // Devuelve las publicaciones si existen
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener publicaciones', error: error.message });
+    res.status(500).json({ menssge: 'Error al obtener publicaciones', error: error.message });
   }
 };
+
 
 export const getPublicacionById = async (req, res) => {
   try {

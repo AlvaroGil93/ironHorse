@@ -1,4 +1,4 @@
-;import supertest from "supertest";
+import supertest from "supertest";
 import app from "../app.js";
 import mongoose from "mongoose";
 import { UserModel } from "../src/models/user.model.js";
