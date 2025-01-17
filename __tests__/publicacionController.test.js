@@ -46,9 +46,19 @@ describe("Prueba de controladores publicacion", () => {
     expect(res.statusCode).toBe(404);
     expect(res.body).toHaveProperty('message', 'Publicación no encontrada')
 
-    it('',)
+   
 
 });
+
+it('Deberia crear una publicacion', async()=>{
+  const res = await supertest(app).post('/publicaciones/crear').send(testpub);
+
+});
+
+it('Deberia actualizar publicacion por ID',async()=>{
+  const res = await supertest(app).put('/publicaciones/actualizar/:id').send(testpub);
+
+})
 
 
 
