@@ -13,7 +13,7 @@ Este proyecto permite gestionar publicaciones en línea, con funcionalidades de 
 
 ## Instalación
 
-1. Clona este repositorio:
+1. Clona este repositorio: git@github.com:AlvaroGil93/ironHorse.git
 
    
    git clone
