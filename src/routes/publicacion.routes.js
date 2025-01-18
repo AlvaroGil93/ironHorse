@@ -9,9 +9,9 @@ const publicacionRouter = express.Router();
 // Rutas de publicaciones
 publicacionRouter.get('/obtener', getPublicacion); // Probado
 publicacionRouter.get('/obtener/:id', getPublicacionById); // Probado
-publicacionRouter.post('/crear', authMiddleware("superadmin"), postPublicacion); //Probado
-publicacionRouter.put('/actualizar/:id', authMiddleware("superadmin"), putPublicacionById); // Probado
-publicacionRouter.delete('/eliminar/:id', authMiddleware("superadmin"), deletePublicacionById); // Probado
+publicacionRouter.post('/crear', /*authMiddleware("superadmin"),*/ postPublicacion); //Probado
+publicacionRouter.put('/actualizar/:id' /*authMiddleware("superadmin")*/, putPublicacionById); // Probado
+publicacionRouter.delete('/eliminar/:id',/* authMiddleware("superadmin"),*/ deletePublicacionById); // Probado
 
 export default publicacionRouter;
 

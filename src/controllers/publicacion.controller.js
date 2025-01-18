@@ -1,4 +1,4 @@
-import Post from '../models/publicacion.model.js'; 
+import Post from '../models/publicacion.model.js';
 import mongoose from 'mongoose';
 import publicacionModel from '../models/publicacion.model.js';
 
@@ -8,23 +8,25 @@ import publicacionModel from '../models/publicacion.model.js';
 export const getPublicacion = async (req, res) => {
   try {
     const publicaciones = await publicacionModel.find(); // Usando modelo para obtener publicaciones
-    
+
     if (publicaciones.length === 0) {
-      return res.status(200).json({ message: 'No hay publicaciones almacenadas' });
+      return res.status(200).json({
+        message: "No hay publicaciones almacenadas"
+      });
     }
 
-    res.status(200).json(publicaciones); // Devuelve las publicaciones si existen
+    res.status(200).json(publicaciones);
+    
   } catch (error) {
-    res.status(500).json({ menssge: 'Error al obtener publicaciones', error: error.message });
+    res.status(500).json({ message: 'Error al obtener publicaciones', error: error.message });
   }
 };
-
 
 export const getPublicacionById = async (req, res) => {
   try {
     const { id } = req.params;
     const publicacion = await publicacionModel.findById(id);
-    
+
     if (!publicacion) {
       return res.status(404).json({ message: 'Publicación no encontrada' });
     }
@@ -48,7 +50,7 @@ export const putPublicacionById = async (req, res) => {
   try {
     const { id } = req.params;
     const updatedPublicacion = await publicacionModel.findByIdAndUpdate(id, req.body, { new: true });
-    
+
     if (!updatedPublicacion) {
       return res.status(404).json({ message: 'Publicación no encontrada' });
     }
@@ -63,7 +65,7 @@ export const deletePublicacionById = async (req, res) => {
   try {
     const { id } = req.params;
     const deletedPublicacion = await publicacionModel.findByIdAndDelete(id);
-    
+
     if (!deletedPublicacion) {
       return res.status(404).json({ message: 'Publicación no encontrada' });
     }

@@ -15,7 +15,7 @@ describe("Prueba de controladores publicacion", () => {
   });
 
   // Objeto de prueba.
-  const testpub = {
+  const testPub = {
     title: "Esta es una prueba",
     image_url: "https://example.com/image.jpg",
     description: "Descripción de prueba",
@@ -33,14 +33,14 @@ describe("Prueba de controladores publicacion", () => {
   //mostrar publicacion
   it('Deberia obtener publicacion' ,async ()=>{
 
-        const postPub = await new publicacionModel(testpub).save()
+        const postPub = await new publicacionModel(testPub).save()
         const res = await supertest(app).get('/publicaciones/obtener')
         expect(res.statusCode).toBe(200);
 
   })
 
-  it("Debería obtener publicación por ID", async () => {
-    const postPub = await new publicacionModel(testpub).save();
+  it("Debería obtener una publicación inexistente por Id", async () => {
+    const postPub = await new publicacionModel(testPub).save();
 
     const res = await supertest(app).get('/publicaciones/obtener/' + "67972a3af82530481d06e79b");
     expect(res.statusCode).toBe(404);
@@ -51,15 +51,32 @@ describe("Prueba de controladores publicacion", () => {
 });
 
 it('Deberia crear una publicacion', async()=>{
-  const res = await supertest(app).post('/publicaciones/crear').send(testpub);
+  const res = await supertest(app).post('/publicaciones/crear').send(testPub);
+  expect(res.statusCode).toBe(201);
+
 
 });
+it('Debería actualizar por id una publicacion', async () => {
 
-it('Deberia actualizar publicacion por ID',async()=>{
-  const res = await supertest(app).put('/publicaciones/actualizar/:id').send(testpub);
+  const postPub = await new publicacionModel(testPub).save()
+  const res = await supertest(app).put('/publicaciones/actualizar/' + postPub._id).send({
+      title: "vamos a darle",content: "Vida loca"
+  })
 
+  expect(res.statusCode).toBe(200);
+
+});
+it('Debería devolver un error al eliminar una publicación inexistente', async () => {
+  const res = await supertest(app).delete('/publicaciones/eliminar/' + "672ac14211af7bf45befebf3");
+  
+  // Verificar que devuelve un código de estado 404
+  expect(res.statusCode).toBe(404);
+  
+  // Verificar que el mensaje de error es el esperado
+  expect(res.body).toHaveProperty('message', 'Publicación no encontrada');
+});
+
+  
 })
 
 
-
-});
